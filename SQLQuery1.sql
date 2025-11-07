@@ -74,6 +74,11 @@ CREATE TABLE Fornecedores (
 	Situacao BIT NOT NULL DEFAULT 1
 );
 
+CREATE TABLE FornecedoresRestritos (
+	id INT PRIMARY KEY NOT NULL IDENTITY (1,1),
+	idFornecedor INT NOT NULL UNIQUE
+);
+
 CREATE TABLE PrincipiosAtivos (
 	id VARCHAR(6) PRIMARY KEY NOT NULL,
 	Nome NVARCHAR(20) NOT NULL,
