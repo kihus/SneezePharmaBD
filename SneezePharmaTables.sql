@@ -103,3 +103,6 @@ CREATE TABLE ItensCompra (
 	ValorUnitario DECIMAL(3, 2) NOT NULL,
 	TotalItem Decimal(5, 2) NOT NULL
 );
+
+ALTER TABLE PrincipiosAtivos
+ADD CONSTRAINT UQ_PrincipiosAtivos UNIQUE (idPA);
