@@ -80,7 +80,8 @@ CREATE TABLE FornecedoresRestritos (
 );
 
 CREATE TABLE PrincipiosAtivos (
-	id VARCHAR(6) PRIMARY KEY NOT NULL,
+	id INT PRIMARY KEY NOT NULL IDENTITY (1,1),
+	idPA AS ('AI' + RIGHT('0000' + CAST(id as VARCHAR(4)), 4)) PERSISTED,
 	Nome NVARCHAR(20) NOT NULL,
 	UltimaCompra DATETIME NOT NULL, 
 	DataCadastro DATE NOT NULL,
@@ -102,4 +103,3 @@ CREATE TABLE ItensCompra (
 	ValorUnitario DECIMAL(3, 2) NOT NULL,
 	TotalItem Decimal(5, 2) NOT NULL
 );
-
