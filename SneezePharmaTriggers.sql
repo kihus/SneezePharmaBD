@@ -1,3 +1,6 @@
+USE SneezePharma
+GO
+
 CREATE TRIGGER trg_Vendas_CheckCliente
 ON Vendas
 INSTEAD OF INSERT

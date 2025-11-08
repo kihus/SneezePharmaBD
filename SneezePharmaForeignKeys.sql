@@ -1,3 +1,6 @@
+USE SneezePharma
+GO
+
 ALTER TABLE Telefones
 ADD FOREIGN KEY (idCliente) REFERENCES Clientes (id);
 
