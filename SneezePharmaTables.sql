@@ -71,7 +71,7 @@ CREATE TABLE Fornecedores (
 	RazaoSocial NVARCHAR(50) NOT NULL,
 	Pais NVARCHAR(20),
 	DataAbertura DATE NOT NULL,
-	UltimoFornecimento DATETIME NOT NULL,
+	UltimoFornecimento DATETIME,
 	DataCadastro DATE NOT NULL,
 	Situacao BIT NOT NULL DEFAULT 1
 );
