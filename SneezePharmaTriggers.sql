@@ -20,7 +20,7 @@ BEGIN
         INSERT INTO Vendas (DataVenda, CPF, ValorTotal)
         SELECT DataVenda, CPF, ValorTotal FROM inserted;
     END
-END;
+END
 GO
 
 CREATE TRIGGER trg_Compras_CheckFornecedor
@@ -46,6 +46,7 @@ BEGIN
         SELECT DateCompra, Fornecedor, ValorTotal FROM inserted;
     END
 END
+GO
 
 CREATE TRIGGER trg_ItensVenda_Limite
 ON ItensVenda
@@ -63,6 +64,7 @@ BEGIN
         ROLLBACK TRANSACTION;
     END
 END
+GO
 
 CREATE TRIGGER trg_ItensCompra_Limite
 ON ItensCompra
@@ -80,6 +82,7 @@ BEGIN
         ROLLBACK TRANSACTION;
     END
 END
+GO
 
 CREATE TRIGGER trg_PreventDelete_Clientes
 ON Clientes

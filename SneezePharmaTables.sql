@@ -1,6 +1,8 @@
-CREATE DATABASE SneezePharma;
+CREATE DATABASE SneezePharma
+GO
 
-USE SneezePharma;
+USE SneezePharma
+GO
 
 CREATE TABLE Clientes (
 	id INT PRIMARY KEY NOT NULL IDENTITY (1,1),
