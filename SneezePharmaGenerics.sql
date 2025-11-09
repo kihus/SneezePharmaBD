@@ -45,3 +45,4 @@ VALUES ('7892840823221', 'Fofura', 'A', 199.90, GETDATE()),
 ('7892449722341', 'Dipirona', 'B', 34.90, GETDATE()),
 ('7891334323224', 'Dramau', 'I', 387.50, GETDATE()),
 ('7891334323224', 'Vitamina de A a Z', 'V', 67.50, GETDATE());
+
