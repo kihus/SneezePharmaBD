@@ -20,8 +20,8 @@ BEGIN
     END
     ELSE
     BEGIN
-        INSERT INTO Vendas (DataVenda, CPF, ValorTotal)
-        SELECT DataVenda, CPF, ValorTotal FROM inserted;
+        INSERT INTO Vendas (DataVenda, CPF)
+        SELECT DataVenda, CPF FROM inserted;
     END
 END
 GO
@@ -45,8 +45,8 @@ BEGIN
     END
     ELSE
     BEGIN
-        INSERT INTO Compras (DateCompra, Fornecedor, ValorTotal)
-        SELECT DateCompra, Fornecedor, ValorTotal FROM inserted;
+        INSERT INTO Compras (DataCompra, Fornecedor)
+        SELECT DataCompra, Fornecedor FROM inserted;
     END
 END
 GO

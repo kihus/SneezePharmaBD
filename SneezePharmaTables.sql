@@ -30,7 +30,6 @@ CREATE TABLE Vendas (
 	id INT PRIMARY KEY NOT NULL IDENTITY (1,1),
 	DataVenda DATE NOT NULL,
 	CPF VARCHAR(11) NOT NULL,
-	ValorTotal DECIMAL(5,2) NOT NULL
 );
 
 CREATE TABLE ItensVenda (
@@ -38,7 +37,7 @@ CREATE TABLE ItensVenda (
 	idVenda INT NOT NULL,
 	Medicamento VARCHAR(13) NOT NULL,
 	Quantidade NUMERIC(3) NOT NULL,
-	ValorUnitario NUMERIC(4,2) NOT NULL,
+	ValorUnitario NUMERIC(6,2) NOT NULL,
 	TotalItem AS (Quantidade * ValorUnitario)
 );
 
@@ -46,8 +45,8 @@ CREATE TABLE Medicamentos (
 	CDB VARCHAR(13) PRIMARY KEY NOT NULL,
 	Nome NVARCHAR(40) NOT NULL,
 	Categoria CHAR NOT NULL,
-	ValorVenda DECIMAL(4,2) NOT NULL,
-	UltimaVenda DATETIME NOT NULL,
+	ValorVenda DECIMAL(6,2) NOT NULL,
+	UltimaVenda DATETIME,
 	DataCadastro DATE NOT NULL,
 	Situacao BIT NOT NULL DEFAULT 1
 );
@@ -92,9 +91,8 @@ CREATE TABLE PrincipiosAtivos (
 
 CREATE TABLE Compras (
 	id INT PRIMARY KEY NOT NULL IDENTITY (1,1),
-	DateCompra DATE NOT NULL,
+	DataCompra DATE NOT NULL,
 	Fornecedor VARCHAR(14) NOT NULL,
-	ValorTotal DECIMAL(5, 2) NOT NULL
 );
 
 CREATE TABLE ItensCompra (
@@ -102,7 +100,7 @@ CREATE TABLE ItensCompra (
 	idCompra INT NOT NULL,
 	Ingrediente VARCHAR(6) NOT NULL,
 	Quantidade NUMERIC(4) NOT NULL,
-	ValorUnitario DECIMAL(3, 2) NOT NULL,
+	ValorUnitario DECIMAL(5, 2) NOT NULL,
 	TotalItem AS (Quantidade * ValorUnitario)
 );
 

@@ -34,10 +34,11 @@ INSERT INTO FornecedoresRestritos
 VALUES (4);
 
 INSERT INTO Medicamentos (CDB, Nome, Categoria, ValorVenda, DataCadastro)
-VALUES ('7892840823221', 'Fofura', 'A', 199.90, GETDATE()),
-('7892449722341', 'Dipirona', 'B', 34.90, GETDATE()),
-('7891334323224', 'Dramau', 'I', 387.50, GETDATE()),
-('7891334323224', 'Vitamina de A a Z', 'V', 67.50, GETDATE());
+VALUES (7892840823221, 'Fofura', 'A', 199.90, GETDATE()),
+(7892449722341, 'Dipirona', 'B', 34.90, GETDATE()),
+(7891334323224, 'Dramau', 'I', 387.50, GETDATE()),
+(7891334383235, 'Vitamina de A a Z', 'V', 67.50, GETDATE()),
+(7891334345390, 'Anti-Java', 'V', 29.90, GETDATE());
 
 INSERT INTO PrincipiosAtivos (Nome, DataCadastro)
 VALUES ('Aminaftona', GETDATE()),
@@ -45,3 +46,31 @@ VALUES ('Aminaftona', GETDATE()),
 ('Femprocumona', GETDATE()),
 ('Fluconazol', GETDATE()),
 ('Felodipino', GETDATE());
+
+INSERT INTO Compras (DataCompra, Fornecedor)
+VALUES (GETDATE(), 2), 
+(GETDATE(), 3), 
+(GETDATE(), 5), 
+(GETDATE(), 1), 
+(GETDATE(), 6); 
+
+INSERT INTO ItensCompra (idCompra, Ingrediente, Quantidade, ValorUnitario)
+VALUES (1, 'AI0001', 10, 25.50), 
+(2, 'AI0003', 30, 43.99), 
+(3, 'AI0002', 50, 15.99), 
+(4, 'AI0005', 99, 159.99), 
+(5, 'AI0004', 20, 32.00);
+
+INSERT INTO Producoes (DataProducao, Medicamento, Quantidade) 
+VALUES (GETDATE(), 7892840823221, 10), 
+(GETDATE(), 7892449722341, 5),
+(GETDATE(), 7891334323224, 43),
+(GETDATE(), 7891334383235, 79),
+(GETDATE(), 7891334345390, 99);
+
+INSERT INTO ItensProducao(idProducao, Principio, QuantidadePrincipio) 
+VALUES (1, 'AI0001', 100),
+(2, 'AI0002', 250),
+(3, 'AI0003', 39),
+(4, 'AI0004', 27),
+(5, 'AI0005', 17);
