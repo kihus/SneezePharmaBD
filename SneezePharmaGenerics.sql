@@ -11,8 +11,6 @@ VALUES ('Yuri Alberto', '22233344410', '12-25-2021'),
 INSERT INTO ClientesRestritos 
 VALUES (2);
 
---SELECT * FROM Medicamentos
-
 INSERT INTO Telefones (Tipo, DDD, Numero, idCliente)
 VALUES ('Celular', '11', '988761234', 1),
 ('Residencial', '11', '24428224', 1),
@@ -23,11 +21,6 @@ VALUES ('Celular', '11', '988761234', 1),
 ('Celular', '16', '987651234', 4),
 ('Celular', '16', '998835432', 4),
 ('Residencial', '12', '20244321', 5);
-
-/*SELECT c.Nome, t.Tipo, t.DDD, t.Numero
-FROM Clientes c
-JOIN Telefones t
-ON c.id = t.idCliente*/
 
 INSERT INTO Fornecedores (Cnpj, RazaoSocial, Pais, DataAbertura, DataCadastro)
 VALUES ('22272076000109', 'Heinz Brasil', 'Brazil', '03-04-2005', GETDATE()),
@@ -46,3 +39,9 @@ VALUES ('7892840823221', 'Fofura', 'A', 199.90, GETDATE()),
 ('7891334323224', 'Dramau', 'I', 387.50, GETDATE()),
 ('7891334323224', 'Vitamina de A a Z', 'V', 67.50, GETDATE());
 
+INSERT INTO PrincipiosAtivos (Nome, DataCadastro)
+VALUES ('Aminaftona', GETDATE()),
+('Acebrofilina', GETDATE()),
+('Femprocumona', GETDATE()),
+('Fluconazol', GETDATE()),
+('Felodipino', GETDATE());

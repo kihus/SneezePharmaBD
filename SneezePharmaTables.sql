@@ -39,7 +39,7 @@ CREATE TABLE ItensVenda (
 	Medicamento VARCHAR(13) NOT NULL,
 	Quantidade NUMERIC(3) NOT NULL,
 	ValorUnitario NUMERIC(4,2) NOT NULL,
-	TotalItem DECIMAL(5,2) NOT NULL
+	TotalItem AS (Quantidade * ValorUnitario)
 );
 
 CREATE TABLE Medicamentos (
@@ -85,7 +85,7 @@ CREATE TABLE PrincipiosAtivos (
 	id INT PRIMARY KEY NOT NULL IDENTITY (1,1),
 	idPA AS ('AI' + RIGHT('0000' + CAST(id as VARCHAR(4)), 4)) PERSISTED,
 	Nome NVARCHAR(20) NOT NULL,
-	UltimaCompra DATETIME NOT NULL, 
+	UltimaCompra DATETIME, 
 	DataCadastro DATE NOT NULL,
 	Situacao BIT NOT NULL DEFAULT 1
 );
@@ -103,7 +103,7 @@ CREATE TABLE ItensCompra (
 	Ingrediente VARCHAR(6) NOT NULL,
 	Quantidade NUMERIC(4) NOT NULL,
 	ValorUnitario DECIMAL(3, 2) NOT NULL,
-	TotalItem Decimal(5, 2) NOT NULL
+	TotalItem AS (Quantidade * ValorUnitario)
 );
 
 ALTER TABLE PrincipiosAtivos
