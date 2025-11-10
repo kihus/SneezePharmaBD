@@ -52,3 +52,13 @@ A forma correta de usar este repositório é:
     * No Windows Explorer, navegue até a pasta onde você clonou o repositório (`.../SneezePharmaBD`).
     * **Arraste e solte** (drag and drop) os arquivos `.sql` (ex: `01_Tabelas.sql`, `02_Dados.sql`, etc.) diretamente para dentro da janela do SSMS.
     * Execute os scripts na ordem correta! ([...]Tables, [...]ForeignKeys, [...]Triggers, [...]Generics)
+      
+## 📊 Modelagem do Banco
+
+Para uma visão mais visual da arquitetura e dos relacionamentos do SneezePharmaBD, consulte os diagramas do projeto:
+
+* **[🔗 Modelo Lógico no draw.db](https://www.drawdb.app/editor?shareId=2e87dd64da3f3de7eec47b64d4f81791)**
+    * *Visão de alto nível das tabelas e como elas se relacionam.*
+
+* **[🔗 Modelo Entidade-Relacionamento (MER) no Excalidraw](https://excalidraw.com/#json=tAaZSDh2KzVDcHumkgcRs,YG3ez_XD3ty49RcfM3uhkg)**
+    * *Diagrama detalhado mostrando as entidades, atributos e cardinalidade.*
