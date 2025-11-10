@@ -47,7 +47,7 @@ VALUES ('Aminaftona', GETDATE()),
 ('Fluconazol', GETDATE()),
 ('Felodipino', GETDATE());
 
-INSERT INTO Compras (DataCompra, Fornecedor)
+INSERT INTO Compras (DataCompra, idFornecedor)
 VALUES (GETDATE(), 2), 
 (GETDATE(), 3), 
 (GETDATE(), 5), 
@@ -74,3 +74,13 @@ VALUES (1, 'AI0001', 100),
 (3, 'AI0003', 39),
 (4, 'AI0004', 27),
 (5, 'AI0005', 17);
+
+INSERT INTO Vendas (DataVenda, idCliente)
+VALUES (GETDATE(), 4);
+
+INSERT INTO ItensVenda (idVenda, Medicamento, Quantidade, ValorUnitario)
+VALUES (1, 7892840823221, 20, 100.90),
+(1, 7891334323224, 40, 90.90),
+(1, 7891334345390, 70, 27.90);
+
+SELECT * FROM Vendas

@@ -29,7 +29,7 @@ CREATE TABLE Telefones (
 CREATE TABLE Vendas (
 	id INT PRIMARY KEY NOT NULL IDENTITY (1,1),
 	DataVenda DATE NOT NULL,
-	CPF VARCHAR(11) NOT NULL,
+	idCliente INT NOT NULL,
 );
 
 CREATE TABLE ItensVenda (
@@ -92,7 +92,7 @@ CREATE TABLE PrincipiosAtivos (
 CREATE TABLE Compras (
 	id INT PRIMARY KEY NOT NULL IDENTITY (1,1),
 	DataCompra DATE NOT NULL,
-	Fornecedor VARCHAR(14) NOT NULL,
+	idFornecedor INT NOT NULL,
 );
 
 CREATE TABLE ItensCompra (

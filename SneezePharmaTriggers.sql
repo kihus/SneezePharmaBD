@@ -9,7 +9,7 @@ BEGIN
     IF EXISTS (
         SELECT 1
         FROM inserted i
-        JOIN Clientes c ON c.CPF = i.CPF
+        JOIN Clientes c ON c.id = i.idCliente
         LEFT JOIN ClientesRestritos cr ON cr.idCliente = c.id
         WHERE c.StatusCliente = 0 OR cr.idCliente IS NOT NULL
     )
@@ -20,8 +20,8 @@ BEGIN
     END
     ELSE
     BEGIN
-        INSERT INTO Vendas (DataVenda, CPF)
-        SELECT DataVenda, CPF FROM inserted;
+        INSERT INTO Vendas (DataVenda, idCliente)
+        SELECT DataVenda, idCliente FROM inserted;
     END
 END
 GO
@@ -34,7 +34,7 @@ BEGIN
     IF EXISTS (
         SELECT 1
         FROM inserted i
-        JOIN Fornecedores f ON f.Cnpj = i.Fornecedor
+        JOIN Fornecedores f ON f.id = i.idFornecedor
         LEFT JOIN FornecedoresRestritos fr ON fr.idFornecedor = f.id
         WHERE f.Situacao = 0 OR fr.idFornecedor IS NOT NULL
     )
@@ -45,8 +45,8 @@ BEGIN
     END
     ELSE
     BEGIN
-        INSERT INTO Compras (DataCompra, Fornecedor)
-        SELECT DataCompra, Fornecedor FROM inserted;
+        INSERT INTO Compras (DataCompra, idFornecedor)
+        SELECT DataCompra, idFornecedor FROM inserted;
     END
 END
 GO
