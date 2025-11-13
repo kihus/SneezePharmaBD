@@ -61,6 +61,8 @@ VALUES (1, 'AI0001', 10, 25.50),
 (4, 'AI0005', 99, 159.99), 
 (5, 'AI0004', 20, 32.00);
 
+SELECT * FROM ItensCompra
+
 INSERT INTO Producoes (DataProducao, Medicamento, Quantidade) 
 VALUES (GETDATE(), 7892840823221, 10), 
 (GETDATE(), 7892449722341, 5),

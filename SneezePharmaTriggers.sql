@@ -28,7 +28,7 @@ GO
 
 CREATE TRIGGER trg_Compras_CheckFornecedor
 ON Compras
-INSTEAD OF INSERT
+AFTER INSERT
 AS
 BEGIN
     IF EXISTS (
@@ -42,11 +42,6 @@ BEGIN
         RAISERROR('Fornecedor bloqueado ou inativo não pode comprar.', 16, 1);
         ROLLBACK TRANSACTION;
         RETURN;
-    END
-    ELSE
-    BEGIN
-        INSERT INTO Compras (DataCompra, idFornecedor)
-        SELECT DataCompra, idFornecedor FROM inserted;
     END
 END
 GO
