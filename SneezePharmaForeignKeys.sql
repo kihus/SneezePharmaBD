@@ -8,7 +8,7 @@ ALTER TABLE ClientesRestritos
 ADD FOREIGN KEY (idCliente) REFERENCES Clientes (id);
 
 ALTER TABLE Vendas
-ADD FOREIGN KEY (idCliente) REFERENCES Clientes (id)
+ADD FOREIGN KEY (idCliente) REFERENCES Clientes (id);
 
 ALTER TABLE ItensVenda
 ADD FOREIGN KEY (idVenda) REFERENCES Vendas (id);
@@ -26,7 +26,7 @@ ALTER TABLE ItensProducao
 ADD FOREIGN KEY (Principio) REFERENCES PrincipiosAtivos (idPA);
 
 ALTER TABLE Compras 
-ADD FOREIGN KEY (idFornecedor) REFERENCES Fornecedores (id)
+ADD FOREIGN KEY (idFornecedor) REFERENCES Fornecedores (id);
 
 ALTER TABLE ItensCompra
 ADD FOREIGN KEY (idCompra) REFERENCES Compras (id);

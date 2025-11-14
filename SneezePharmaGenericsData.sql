@@ -17,7 +17,7 @@ VALUES
 ('AI0003', 10, 5.50),
 ('AI0005', 20, 6.50);
 
-EXEC sp_Compra 1002, @Itens = @ItensDeCompra;
+EXEC sp_Compra 6, @Itens = @ItensDeCompra;
 
 -- Adicionando Cliente
 
@@ -38,3 +38,5 @@ SELECT c.Nome, c.CPF, t.Tipo, t.DDD, t.Numero
 FROM Clientes c
 JOIN Telefones t
 ON c.id = t.idCliente
+
+SELECT * FROM Fornecedores
