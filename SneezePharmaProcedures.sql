@@ -209,29 +209,36 @@ GO
 CREATE TYPE tp_VendaItens AS TABLE (
     Medicamento VARCHAR(13),
     Quantidade NUMERIC(3),
-    ValorUnitario NUMERIC(4,2)
+    ValorUnitario NUMERIC(6,2)
 );
 GO
 
-CREATE OR ALTER PROCEDURE sp_ClientesRestritos
-	@idCliente INT
+CREATE OR ALTER PROCEDURE sp_Vendas
+    @idCliente INT,
+    @Itens tp_VendaItens READONLY
 AS
 BEGIN
-	SET NOCOUNT ON;
-	BEGIN TRY	
-		INSERT INTO ClientesRestritos (idCliente)
-		VALUES (@idCliente);
+    SET NOCOUNT ON;
+    DECLARE @idVenda INT;
 
-		PRINT 'Cliente Adicionado à lista de Restritos';
-	END TRY
+    BEGIN TRY
+        INSERT INTO Vendas (DataVenda, idCliente)
+        VALUES (CAST(GETDATE() AS DATE), @idCliente);
 
-	BEGIN CATCH 
-		PRINT 'Erro: Não foi possível adicionar o cliente.';
-		PRINT 'Erro original: ' + ERROR_MESSAGE();
-	END CATCH
-END
+        SET @idVenda = SCOPE_IDENTITY();
+
+        INSERT INTO ItensVenda (idVenda, Medicamento, Quantidade, ValorUnitario)
+        SELECT @idVenda, Medicamento, Quantidade, ValorUnitario
+        FROM @Itens;
+
+        PRINT 'Venda registrada com sucesso!';
+    END TRY
+    BEGIN CATCH
+        PRINT 'Erro: Não foi possível registrar a venda.';
+        PRINT 'Erro original: ' + ERROR_MESSAGE();
+    END CATCH
+END;
 GO
-
 -- Producoes
 
 CREATE TYPE tp_ProducoesItens AS TABLE (
@@ -248,6 +255,7 @@ CREATE OR ALTER PROCEDURE sp_Producoes
 AS
 BEGIN
     SET NOCOUNT ON;
+
     DECLARE @idProducao INT;
 
     BEGIN TRY
