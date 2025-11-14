@@ -73,7 +73,7 @@ GO
 
 -- Telefone
 
-CREATE TYPE dbo.tp_Telefones AS TABLE (
+CREATE TYPE tp_Telefones AS TABLE (
 	Tipo VARCHAR(15) NOT NULL,
 	Ddd NUMERIC (2) NOT NULL,
 	Numero NUMERIC (9) NOT NULL
@@ -119,7 +119,10 @@ BEGIN
 
 		SET @idCliente = SCOPE_IDENTITY();
 
-		EXEC sp_Telefones @idCliente, @Telefones;
+		-- Adicionando Telefones
+		EXEC sp_Telefones 
+			@idCliente, 
+			@Telefones;
 
 		PRINT 'Cliente Adicionado!';
 	END TRY
@@ -130,63 +133,3 @@ BEGIN
 	END CATCH 
 END
 GO
-
--- Medicamento
-
-CREATE OR ALTER PROCEDURE sp_Medicamento
-	@CDB VARCHAR(13),
-	@Nome NVARCHAR(40),
-	@Categoria CHAR(1),
-	@ValorVenda DECIMAL(4,2),
-	@UltimaVenda DATETIME,
-	@DataCadastro DATE
-AS
-BEGIN
-	SET NOCOUNT ON;
-	BEGIN TRY
-		INSERT INTO Medicamentos (CDB, Nome, Categoria, ValorVenda, UltimaVenda, DataCadastro)
-		VALUES (@CDB, @Nome, @Categoria, @ValorVenda, @UltimaVenda, @DataCadastro);
-
-		PRINT 'Medicamnto Adicionado';
-	END TRY
-	BEGIN CATCH
-		PRINT 'Erro: Não foi possível adicionar o medicamento';
-		PRINT 'Erro original: ' +	ERROR_MESSAGE();
-	END CATCH
-END;
-GO
-
--- Principios Ativos
-
-CREATE OR ALTER PROCEDURE sp_PrincipiosAtivos
-	@id VARCHAR(6),
-	@Nome NVARCHAR(20),
-	@UltimaCompra DATETIME,
-	@DataCadastro DATE
-AS
-BEGIN
-	SET NOCOUNT ON;
-	BEGIN TRY
-		INSERT INTO PrincipiosAtivos(id, Nome, UltimaCompra, DataCadastro)
-		VALUES (@id, @Nome, @UltimaCompra, @DataCadastro);
-
-		PRINT 'Princípio Ativo Adicionado';
-	END TRY
-	BEGIN CATCH
-		PRINT 'Erro: Não foi possível adicionar o princípio ativo';
-		PRINT 'Erro original: ' +	ERROR_MESSAGE();
-	END CATCH
-END;
-GO
-
---Vendas
-
-CREATE TYPE tp_VendaItens AS TABLE
-(
-	Medicamento VARCHAR(13),
-	Quantidade NUMERIC(3),
-	ValorUnitario NUMERIC(4,2)
-);
-GO
-
-CREATE OR ALTER PROCEDURE sp_Vendas

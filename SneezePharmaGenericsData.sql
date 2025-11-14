@@ -34,6 +34,20 @@ EXEC sp_Clientes
 	@Cpf = '55544433322',
 	@Telefones = @Telefone;
 
+INSERT INTO @Telefone (Tipo, Ddd, Numero)
+VALUES ('Celular', 11, 987640099), 
+	('Residencial', 11, 23341234);
+
+EXEC sp_Clientes
+	@Nome = 'Carlinhos Maia',
+	@Cpf = '11122233344',
+	@Telefones = @Telefone;
+
+-- Adicionando Cliente Restrito
+
+EXEC sp_ClientesRestritos 1;
+
+
 SELECT c.Nome, c.CPF, t.Tipo, t.DDD, t.Numero 
 FROM Clientes c
 JOIN Telefones t
