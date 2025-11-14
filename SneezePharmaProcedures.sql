@@ -213,3 +213,58 @@ CREATE TYPE tp_VendaItens AS TABLE (
 );
 GO
 
+CREATE OR ALTER PROCEDURE sp_ClientesRestritos
+	@idCliente INT
+AS
+BEGIN
+	SET NOCOUNT ON;
+	BEGIN TRY	
+		INSERT INTO ClientesRestritos (idCliente)
+		VALUES (@idCliente);
+
+		PRINT 'Cliente Adicionado à lista de Restritos';
+	END TRY
+
+	BEGIN CATCH 
+		PRINT 'Erro: Não foi possível adicionar o cliente.';
+		PRINT 'Erro original: ' + ERROR_MESSAGE();
+	END CATCH
+END
+GO
+
+-- Producoes
+
+CREATE TYPE tp_ProducoesItens AS TABLE (
+    Principio VARCHAR(6),
+    QuantidadePrincipio NUMERIC(4)
+);
+GO
+
+CREATE OR ALTER PROCEDURE sp_Producoes
+    @DataProducao DATE,
+    @Medicamento VARCHAR(13),
+    @Quantidade NUMERIC(3),
+    @Itens tp_ProducoesItens READONLY
+AS
+BEGIN
+    SET NOCOUNT ON;
+    DECLARE @idProducao INT;
+
+    BEGIN TRY
+        INSERT INTO Producoes (DataProducao, Medicamento, Quantidade)
+        VALUES (@DataProducao, @Medicamento, @Quantidade);
+
+        SET @idProducao = SCOPE_IDENTITY();
+
+        INSERT INTO ItensProducao (idProducao, Principio, QuantidadePrincipio)
+        SELECT @idProducao, Principio, QuantidadePrincipio
+        FROM @Itens;
+
+        PRINT 'Produção registrada com sucesso!';
+    END TRY
+    BEGIN CATCH
+        PRINT 'Erro: Não foi possível registrar a produção.';
+        PRINT 'Erro original: ' + ERROR_MESSAGE();
+    END CATCH
+END;
+GO

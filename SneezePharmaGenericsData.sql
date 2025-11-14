@@ -48,6 +48,8 @@ EXEC sp_Clientes
 EXEC sp_ClientesRestritos 1;
 
 
+
+
 SELECT c.Nome, c.CPF, t.Tipo, t.DDD, t.Numero 
 FROM Clientes c
 JOIN Telefones t
