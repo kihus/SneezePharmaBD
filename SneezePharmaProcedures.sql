@@ -73,7 +73,7 @@ GO
 
 -- Telefone
 
-CREATE TYPE dbo.tp_Telefones AS TABLE (
+CREATE TYPE tp_Telefones AS TABLE (
 	Tipo VARCHAR(15) NOT NULL,
 	Ddd NUMERIC (2) NOT NULL,
 	Numero NUMERIC (9) NOT NULL

@@ -17,7 +17,7 @@ VALUES
 ('AI0003', 10, 5.50),
 ('AI0005', 20, 6.50);
 
-EXEC sp_Compra 1002, @Itens = @ItensDeCompra;
+EXEC sp_Compra 6, @Itens = @ItensDeCompra;
 
 -- Adicionando Cliente
 
@@ -34,7 +34,23 @@ EXEC sp_Clientes
 	@Cpf = '55544433322',
 	@Telefones = @Telefone;
 
+INSERT INTO @Telefone (Tipo, Ddd, Numero)
+VALUES ('Celular', 11, 987640099), 
+	('Residencial', 11, 23341234);
+
+EXEC sp_Clientes
+	@Nome = 'Carlinhos Maia',
+	@Cpf = '11122233344',
+	@Telefones = @Telefone;
+
+-- Adicionando Cliente Restrito
+
+EXEC sp_ClientesRestritos 1;
+
+
 SELECT c.Nome, c.CPF, t.Tipo, t.DDD, t.Numero 
 FROM Clientes c
 JOIN Telefones t
 ON c.id = t.idCliente
+
+SELECT * FROM Fornecedores
