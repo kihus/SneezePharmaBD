@@ -134,3 +134,60 @@ BEGIN
 END
 GO
 
+-- Medicamento
+
+CREATE OR ALTER PROCEDURE sp_Medicamento
+    @CDB VARCHAR(13),
+    @Nome NVARCHAR(40),
+    @Categoria CHAR(1),
+    @ValorVenda DECIMAL(4,2),
+    @UltimaVenda DATETIME,
+    @DataCadastro DATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        INSERT INTO Medicamentos(CDB, Nome, Categoria, ValorVenda, UltimaVenda, DataCadastro)
+        VALUES (@CDB, @Nome, @Categoria, @ValorVenda, @UltimaVenda, @DataCadastro);
+
+        PRINT 'Medicamento Adicionado!';
+    END TRY
+    BEGIN CATCH
+        PRINT 'Erro: Não foi possível adicionar o medicamento.';
+        PRINT 'Erro original: ' + ERROR_MESSAGE();
+    END CATCH
+END;
+GO
+
+-- Principios Ativos
+
+CREATE OR ALTER PROCEDURE sp_PrincipiosAtivos
+    @id VARCHAR(6),
+    @Nome NVARCHAR(20),
+    @UltimaCompra DATETIME,
+    @DataCadastro DATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        INSERT INTO PrincipiosAtivos (id, Nome, UltimaCompra, DataCadastro, Situacao)
+        VALUES (@id, @Nome, @UltimaCompra, @DataCadastro, 1);
+
+        PRINT 'Princípio Ativo Adicionado!';
+    END TRY
+    BEGIN CATCH
+        PRINT 'Erro: Não foi possível adicionar o princípio ativo.';
+        PRINT 'Erro original: ' + ERROR_MESSAGE();
+    END CATCH
+END;
+GO
+
+
+-- Venda
+
+CREATE TYPE tp_VendaItens AS TABLE (
+    Medicamento VARCHAR(13),
+    Quantidade NUMERIC(3),
+    ValorUnitario NUMERIC(4,2)
+);
+GO
