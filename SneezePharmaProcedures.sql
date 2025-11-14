@@ -119,7 +119,10 @@ BEGIN
 
 		SET @idCliente = SCOPE_IDENTITY();
 
-		EXEC sp_Telefones @idCliente, @Telefones;
+		-- Adicionando Telefones
+		EXEC sp_Telefones 
+			@idCliente, 
+			@Telefones;
 
 		PRINT 'Cliente Adicionado!';
 	END TRY
@@ -128,5 +131,27 @@ BEGIN
 		PRINT 'Erro: Não foi possível adicionar o cliente';
 		PRINT 'Erro: ' + ERROR_MESSAGE();
 	END CATCH 
+END
+GO
+
+-- Adicionando Cliente Restrito
+
+CREATE OR ALTER PROCEDURE sp_ClientesRestritos
+	@idCliente INT
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	BEGIN TRY	
+		INSERT INTO ClientesRestritos (idCliente)
+		VALUES (@idCliente);
+
+		PRINT 'Cliente Adicionado a lista de Restritos';
+	END TRY
+
+	BEGIN CATCH 
+		PRINT 'Erro: Não foi possível adicionar o Cliente.';
+		PRINT 'Erro original: ' + ERROR_MESSAGE();
+	END CATCH
 END
 GO
